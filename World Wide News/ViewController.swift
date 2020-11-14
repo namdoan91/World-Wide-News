@@ -9,8 +9,9 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
+import WebKit
 
-class ViewController: UIViewController {
+class ViewController: UIViewController, WKNavigationDelegate {
     let newLabel: UILabel = {
         let newlabel = UILabel()
         newlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -31,12 +32,12 @@ class ViewController: UIViewController {
     
     var datas = [Articles]()
     var dataResult = [News]()
-    var imageDownload = ""
-    
     var titleAray = [String]()
     var url = [String]()
     var urlToImage = [String]()
     var content = [String]()
+    var source = [String]()
+    var author = [String]()
     override func viewDidLoad() {
         super.viewDidLoad()
         addSub()
@@ -56,14 +57,14 @@ class ViewController: UIViewController {
     func setLayout(){
         
         newLabel.topAnchor.constraint(equalTo: view.topAnchor, constant: marginTop).isActive = true
-        newLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margin + 10).isActive = true
-        newLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margin - 10).isActive = true
+        newLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+        newLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margin).isActive = true
         newLabel.heightAnchor.constraint(equalToConstant: 30).isActive = true
         
         
-        tableView.topAnchor.constraint(equalTo: newLabel.bottomAnchor, constant: 0).isActive = true
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: margin).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -margin - 10).isActive = true
+        tableView.topAnchor.constraint(equalTo: newLabel.bottomAnchor, constant: 5).isActive = true
+        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0).isActive = true
+        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0).isActive = true
         tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0).isActive = true
     }
   
@@ -79,6 +80,7 @@ class ViewController: UIViewController {
                     strongSelf.titleAray.append(item["title"].stringValue)
                     strongSelf.url.append(item["url"].stringValue)
                     strongSelf.urlToImage.append(item["urlToImage"].stringValue)
+                    strongSelf.author.append(item["author"].stringValue)
                     strongSelf.tableView.reloadData()
                 }
             case .failure(let err):
@@ -89,7 +91,7 @@ class ViewController: UIViewController {
 }
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(titleAray.count)
+//        print(titleAray.count)
         return titleAray.count
     }
     
@@ -98,15 +100,28 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
        
         cell.contentLabel.text = titleAray[indexPath.row]
         cell.photoImageView.kf.setImage(with: URL(string: urlToImage[indexPath.row]))
+        cell.photoImageView.clipsToBounds = true
+        cell.titleNewLabel.text = author[indexPath.row]
+//        cell.layer.borderWidth = 0.5
+//        cell.layer.borderColor = UIColor.red.cgColor
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 150
+        tableView.separatorColor = UIColor.red
+        
+        return UITableView.automaticDimension
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
+        
         let urls = url[(indexPath?.row)!]
-        UIApplication.shared.open( URL(string: urls)!, options: [:]) { _ in 
+        print(urls)
+//        let urlRequest = URLRequest(url: urls)
+//        let webView = WKWebView()
+//        webView.navigationDelegate = self
+//        webView.load(urlRequest)
+//        webView.allowsBackForwardNavigationGestures = true
+        UIApplication.shared.open( URL(string: urls)!, options: [:]) { _ in
         }
     }
     
