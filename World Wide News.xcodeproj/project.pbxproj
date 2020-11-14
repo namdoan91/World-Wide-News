@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,6 +13,9 @@
 		08E119ED255F5D6800FA4BC2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E119EB255F5D6800FA4BC2 /* Main.storyboard */; };
 		08E119EF255F5D6900FA4BC2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 08E119EE255F5D6900FA4BC2 /* Assets.xcassets */; };
 		08E119F2255F5D6900FA4BC2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 08E119F0255F5D6900FA4BC2 /* LaunchScreen.storyboard */; };
+		08E119FC255F5DA000FA4BC2 /* worldList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E119FB255F5DA000FA4BC2 /* worldList.swift */; };
+		08E11A08255F84DF00FA4BC2 /* News.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08E11A07255F84DF00FA4BC2 /* News.swift */; };
+		B533568655962CC0D30A6EB1 /* Pods_World_Wide_News.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B3A07D795D04A205B079E7A4 /* Pods_World_Wide_News.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +27,11 @@
 		08E119EE255F5D6900FA4BC2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		08E119F1255F5D6900FA4BC2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		08E119F3255F5D6900FA4BC2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		08E119FB255F5DA000FA4BC2 /* worldList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = worldList.swift; sourceTree = "<group>"; };
+		08E11A07255F84DF00FA4BC2 /* News.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = News.swift; sourceTree = "<group>"; };
+		26C61D55CB2B0E758195F0EB /* Pods-World Wide News.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-World Wide News.release.xcconfig"; path = "Target Support Files/Pods-World Wide News/Pods-World Wide News.release.xcconfig"; sourceTree = "<group>"; };
+		4AD6CA47C944A59DBAC5EBAA /* Pods-World Wide News.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-World Wide News.debug.xcconfig"; path = "Target Support Files/Pods-World Wide News/Pods-World Wide News.debug.xcconfig"; sourceTree = "<group>"; };
+		B3A07D795D04A205B079E7A4 /* Pods_World_Wide_News.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_World_Wide_News.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +39,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B533568655962CC0D30A6EB1 /* Pods_World_Wide_News.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -42,6 +51,8 @@
 			children = (
 				08E119E4255F5D6800FA4BC2 /* World Wide News */,
 				08E119E3255F5D6800FA4BC2 /* Products */,
+				B21EC550DB0EE36505E74CC8 /* Pods */,
+				1EF81CF42F96CD6360C1929C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -56,6 +67,7 @@
 		08E119E4255F5D6800FA4BC2 /* World Wide News */ = {
 			isa = PBXGroup;
 			children = (
+				08E119FA255F5D7A00FA4BC2 /* Model */,
 				08E119E5255F5D6800FA4BC2 /* AppDelegate.swift */,
 				08E119E7255F5D6800FA4BC2 /* SceneDelegate.swift */,
 				08E119E9255F5D6800FA4BC2 /* ViewController.swift */,
@@ -67,6 +79,32 @@
 			path = "World Wide News";
 			sourceTree = "<group>";
 		};
+		08E119FA255F5D7A00FA4BC2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				08E119FB255F5DA000FA4BC2 /* worldList.swift */,
+				08E11A07255F84DF00FA4BC2 /* News.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		1EF81CF42F96CD6360C1929C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B3A07D795D04A205B079E7A4 /* Pods_World_Wide_News.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B21EC550DB0EE36505E74CC8 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4AD6CA47C944A59DBAC5EBAA /* Pods-World Wide News.debug.xcconfig */,
+				26C61D55CB2B0E758195F0EB /* Pods-World Wide News.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +112,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 08E119F6255F5D6900FA4BC2 /* Build configuration list for PBXNativeTarget "World Wide News" */;
 			buildPhases = (
+				DEB54AAFD928021628D9EAE9 /* [CP] Check Pods Manifest.lock */,
 				08E119DE255F5D6800FA4BC2 /* Sources */,
 				08E119DF255F5D6800FA4BC2 /* Frameworks */,
 				08E119E0255F5D6800FA4BC2 /* Resources */,
+				55045D46F36E7B57CA67E923 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +172,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		55045D46F36E7B57CA67E923 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-World Wide News/Pods-World Wide News-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-World Wide News/Pods-World Wide News-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-World Wide News/Pods-World Wide News-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DEB54AAFD928021628D9EAE9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-World Wide News-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		08E119DE255F5D6800FA4BC2 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -139,6 +221,8 @@
 			files = (
 				08E119EA255F5D6800FA4BC2 /* ViewController.swift in Sources */,
 				08E119E6255F5D6800FA4BC2 /* AppDelegate.swift in Sources */,
+				08E119FC255F5DA000FA4BC2 /* worldList.swift in Sources */,
+				08E11A08255F84DF00FA4BC2 /* News.swift in Sources */,
 				08E119E8255F5D6800FA4BC2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -283,11 +367,13 @@
 		};
 		08E119F7255F5D6900FA4BC2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AD6CA47C944A59DBAC5EBAA /* Pods-World Wide News.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "World Wide News/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -301,11 +387,13 @@
 		};
 		08E119F8255F5D6900FA4BC2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 26C61D55CB2B0E758195F0EB /* Pods-World Wide News.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = "World Wide News/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 14.2;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
