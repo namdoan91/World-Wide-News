@@ -7,6 +7,7 @@
 
 import Foundation
 import SwiftyJSON
+import UIKit
 
 class News{
     var status: String?
@@ -38,6 +39,8 @@ class Articles{
         urlToImage = json["urlToImage"].stringValue
         publishedAt = json["publishedAt"].stringValue
         content = json["content"].stringValue
+        
+        
     }
 }
 class Source{
