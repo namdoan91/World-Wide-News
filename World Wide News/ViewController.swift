@@ -10,8 +10,9 @@ import Alamofire
 import SwiftyJSON
 import Kingfisher
 import WebKit
+import SafariServices
 
-class ViewController: UIViewController, WKNavigationDelegate {
+class ViewController: UIViewController, WKNavigationDelegate, SFSafariViewControllerDelegate {
     let newLabel: UILabel = {
         let newlabel = UILabel()
         newlabel.translatesAutoresizingMaskIntoConstraints = false
@@ -105,23 +106,26 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         cell.titleNewLabel.text = author[indexPath.row]
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        let theDate = dateFormatter.date(from: "\(publishedAt[indexPath.row])")
-//        print(theDate)
+        let theDate = dateFormatter.date(from: publishedAt[indexPath.row])
+        print(theDate!)
         let newDateFormater = DateFormatter()
         newDateFormater.dateStyle = .short
-//        newDateFormater.timeStyle = .short
-//       print(newDateFormater.string(from: theDate?))
-        cell.timerLabel.text = newDateFormater.string(from: theDate!  )
+        newDateFormater.timeStyle = .short
+//        cell.timerLabel.text = newDateFormater.string(from: theDate! ?? for: Date?)
         return cell
-    }1
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath:0 IndexPath) -> CGFloat {
+    }
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         tableView.separatorColor = UIColor.red
         return UITableView.automaticDimension
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let indexPath = tableView.indexPathForSelectedRow
         let urls = url[(indexPath?.row)!]
-        UIApplication.shared.open( URL(string: urls)!, options: [:]) { _ in
+        if let urlLink = URL(string: urls){
+            let vc = SFSafariViewController(url: urlLink,entersReaderIfAvailable: true)
+            vc.delegate = self
+            present(vc, animated: true) {
+            }
         }
     }
 }
