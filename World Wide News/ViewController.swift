@@ -9,17 +9,15 @@ import UIKit
 import Alamofire
 import SwiftyJSON
 import Kingfisher
-import WebKit
 import SafariServices
 
-class ViewController: UIViewController, WKNavigationDelegate, SFSafariViewControllerDelegate {
+class ViewController: UIViewController, SFSafariViewControllerDelegate {
     let newLabel: UILabel = {
         let newlabel = UILabel()
         newlabel.translatesAutoresizingMaskIntoConstraints = false
         newlabel.textColor = UIColor(red:0.961, green:0.275, blue:0.259, alpha: 1.000)
         newlabel.text = "Worldwide News"
         newlabel.font = UIFont.boldSystemFont(ofSize: 35)
-        
         return newlabel
     }()
     let tableView: UITableView = {
@@ -28,16 +26,6 @@ class ViewController: UIViewController, WKNavigationDelegate, SFSafariViewContro
         tableview.backgroundColor = UIColor.lightGray
         return tableview
     }()
-    ///To convert API result date (ISO8601) to `Date`, this property should not be inside any methods
-      let inDateFormatter = ISO8601DateFormatter()
-      
-      ///To convert `Date` to readable date format, this property should not be inside any methods
-      let outDateFormatter: DateFormatter = {
-          let df = DateFormatter()
-          df.dateFormat = "dd-MM-yyyy"
-          df.locale = Locale(identifier: "en_US_POSIX")
-          return df
-      }()
     let marginTop: CGFloat = 44
     let margin: CGFloat = 10
     var titleAray = [String]()
@@ -55,6 +43,7 @@ class ViewController: UIViewController, WKNavigationDelegate, SFSafariViewContro
         tableView.delegate = self
         tableView.dataSource = self
         getData()
+        tableView.reloadData()
     }
     func addSub(){
         view.addSubview(newLabel)
@@ -95,7 +84,6 @@ class ViewController: UIViewController, WKNavigationDelegate, SFSafariViewContro
 }
 extension ViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-//        print(titleAray.count)
         return titleAray.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,14 +92,20 @@ extension ViewController: UITableViewDelegate, UITableViewDataSource{
         cell.photoImageView.kf.setImage(with: URL(string: urlToImage[indexPath.row]))
         cell.photoImageView.clipsToBounds = true
         cell.titleNewLabel.text = author[indexPath.row]
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-        let theDate = dateFormatter.date(from: publishedAt[indexPath.row])
-        print(theDate!)
-        let newDateFormater = DateFormatter()
-        newDateFormater.dateStyle = .short
-        newDateFormater.timeStyle = .short
-//        cell.timerLabel.text = newDateFormater.string(from: theDate! ?? for: Date?)
+        let dateFormatter = ISO8601DateFormatter()
+        dateFormatter.formatOptions = [.withFullDate,
+                                       .withTime,
+                                       .withDashSeparatorInDate,
+                                       .withColonSeparatorInTime]
+        dateFormatter.timeZone = TimeZone(abbreviation: "GMT")
+        let updateAtStr = "\(publishedAt[indexPath.row])"
+        let updateAt = dateFormatter.date(from: updateAtStr)
+        let formatter = DateFormatter()
+        formatter.timeStyle = .short
+        formatter.dateStyle = .short
+        formatter.timeZone = TimeZone(identifier: "GMT")
+        let renAt = formatter.string(from: updateAt!)
+        cell.timerLabel.text = renAt
         return cell
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

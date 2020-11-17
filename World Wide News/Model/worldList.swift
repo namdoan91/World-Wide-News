@@ -40,25 +40,19 @@ class worldList: UITableViewCell {
         let titleNewLabel = UILabel()
         titleNewLabel.translatesAutoresizingMaskIntoConstraints = false
         titleNewLabel.textColor = UIColor.blue
-        titleNewLabel.font = UIFont.boldSystemFont(ofSize: 15)
+        titleNewLabel.font = UIFont.boldSystemFont(ofSize: 10)
         titleNewLabel.textColor = UIColor(red:0.275, green:0.282, blue:0.298, alpha: 1.000)
+        titleNewLabel.textAlignment = .right
         return titleNewLabel
     }()
-    
     override func awakeFromNib() {
         super.awakeFromNib()
- 
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         addSub()
         setLayout()
         containerView.backgroundColor = UIColor(red:0.906, green:0.910, blue:0.918, alpha: 1.000)
-//        let currentDateTime = Date()
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.timeStyle = .long
-//        timerLabel.text = "\(dateFormatter.string(from: currentDateTime))"
     }
     func addSub(){
         self.addSubview(containerView)
@@ -90,9 +84,8 @@ class worldList: UITableViewCell {
         photoImageView.heightAnchor.constraint(equalToConstant: 120).isActive = true
         
         timerLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor,constant: -5).isActive  = true
-        timerLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -10).isActive = true
+        timerLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -20).isActive = true
         timerLabel.widthAnchor.constraint(equalTo: self.widthAnchor, multiplier: 0.45, constant: 0).isActive = true
         timerLabel.heightAnchor.constraint(equalTo: self.heightAnchor,multiplier: 0.2, constant: 0).isActive = true
-        
     }
 }
